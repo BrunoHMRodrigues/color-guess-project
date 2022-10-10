@@ -64,4 +64,19 @@ function initialize() {
   getQuestion();
 }
 
+function clear() {
+  const answerBox = document.getElementById('answer');
+  for (let index = 0; index < 6; index += 1) {
+    containerColors.firstChild.remove();
+  }
+  answerBox.innerText = 'Escolha uma cor';
+}
+const resetButton = document.getElementById('reset-game');
+
+function resetGame() {
+  clear();
+  initialize();
+}
+resetButton.addEventListener('click', resetGame);
+
 window.onload = initialize();
