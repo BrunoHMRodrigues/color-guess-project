@@ -18,10 +18,50 @@ function createElementsCircle() {
     circleElement.style.backgroundColor = getRandomColor;
     containerColors.appendChild(circleElement);
   }
+  document.querySelector('.ball').style.backgroundColor = 'rgb(0, 0, 0)';
 }
+
+function getParametersRgbAnswer(getAnswerColor) {
+  let position = null;
+  let stringAnswer = '';
+  for (let index = 0; index < getAnswerColor.length; index += 1) {
+    if (getAnswerColor[index] === '(') {
+      position = index;
+      stringAnswer += getAnswerColor[index];
+    } else if (index >= position && position !== null) {
+      stringAnswer += getAnswerColor[index];
+    }
+  }
+  return stringAnswer;
+}
+
+function getQuestion() {
+  const randomIndex = Math.round(Math.random() * 5);
+  const buttonElement = document.querySelectorAll('.ball')[randomIndex].style.backgroundColor;
+  const colorRgb = getParametersRgbAnswer(buttonElement);
+  const colorToGuess = document.getElementById('rgb-color');
+
+  colorToGuess.innerText = colorRgb;
+}
+
+function verifyAnswer(event) {
+  const getAnswerColor = event.target.style.backgroundColor;
+  const Answer = getParametersRgbAnswer(getAnswerColor);
+  const colorQuestion = document.getElementById('rgb-color').innerText;
+  const boxAnswer = document.querySelector('#answer');
+  console.log(Answer);
+  console.log(colorQuestion);
+  if (Answer === colorQuestion) {
+    boxAnswer.innerText = 'Acertou!';
+  } else {
+    boxAnswer.innerText = 'Errou! Tente novamente!';
+  }
+}
+containerColors.addEventListener('click', verifyAnswer);
 
 function initialize() {
   createElementsCircle();
+  getQuestion();
 }
 
 window.onload = initialize();
