@@ -18,7 +18,6 @@ function createElementsCircle() {
     circleElement.style.backgroundColor = getRandomColor;
     containerColors.appendChild(circleElement);
   }
-  document.querySelector('.ball').style.backgroundColor = 'rgb(0, 0, 0)';
 }
 
 function getParametersRgbAnswer(getAnswerColor) {
@@ -53,6 +52,8 @@ function verifyAnswer(event) {
   console.log(colorQuestion);
   if (Answer === colorQuestion) {
     boxAnswer.innerText = 'Acertou!';
+    const score = document.getElementById('score');
+    score. innerText = parseInt(score. innerText) + 3;
   } else {
     boxAnswer.innerText = 'Errou! Tente novamente!';
   }
