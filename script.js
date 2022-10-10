@@ -53,7 +53,7 @@ function verifyAnswer(event) {
   if (Answer === colorQuestion) {
     boxAnswer.innerText = 'Acertou!';
     const score = document.getElementById('score');
-    score. innerText = parseInt(score. innerText) + 3;
+    score.innerText = parseInt(score.innerText, 10) + 3;
   } else {
     boxAnswer.innerText = 'Errou! Tente novamente!';
   }
